@@ -1,0 +1,289 @@
+/* Base Styles */
+:root {
+    --primary-color: #4361ee;
+    --x-color: #e63946;
+    --o-color: #2a9d8f;
+    --background-color: #f8f9fa;
+    --cell-background: #ffffff;
+    --border-color: #dee2e6;
+    --text-color: #212529;
+    --light-text: #6c757d;
+    --winning-bg: rgba(0, 0, 0, 0.8);
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+  
+  .container {
+    max-width: 500px;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    text-align: center;
+  }
+  
+  h1 {
+    margin-bottom: 20px;
+    color: var(--primary-color);
+  }
+  
+  /* Game Options */
+  .game-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .mode-selector {
+    display: flex;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+  
+  .mode-selector button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .mode-selector button.active {
+    background-color: var(--primary-color);
+    color: white;
+  }
+  
+  .difficulty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    display: none;
+  }
+  
+  .difficulty span {
+    color: var(--light-text);
+  }
+  
+  .difficulty select {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+  }
+  
+  /* Status */
+  .status-container {
+    margin-bottom: 20px;
+  }
+  
+  .status {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary-color);
+  }
+  
+  /* Game Board */
+  .board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    margin-bottom: 30px;
+  }
+  
+  .cell {
+    aspect-ratio: 1;
+    background-color: var(--cell-background);
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+  
+  .cell:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .cell.x {
+    color: var(--x-color);
+  }
+  
+  .cell.o {
+    color: var(--o-color);
+  }
+  
+  .cell.x::before {
+    content: "X";
+  }
+  
+  .cell.o::before {
+    content: "O";
+  }
+  
+  .cell.highlight {
+    background-color: rgba(67, 97, 238, 0.2);
+  }
+  
+  /* Score */
+  .score-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .score {
+    flex: 1;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    margin: 0 5px;
+  }
+  
+  .player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  .player i {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+  }
+  
+  .player i.fa-times {
+    color: var(--x-color);
+  }
+  
+  .player i.fa-circle {
+    color: var(--o-color);
+  }
+  
+  .points {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  /* Buttons */
+  .actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s;
+  }
+  
+  .btn:hover {
+    opacity: 0.9;
+  }
+  
+  .primary {
+    background-color: var(--primary-color);
+    color: white;
+  }
+  
+  #reset-game {
+    background-color: #f8f9fa;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+  }
+  
+  /* Winning Message */
+  .winning-message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--winning-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 5rem;
+    flex-direction: column;
+    display: none;
+  }
+  
+  .winning-message.show {
+    display: flex;
+  }
+  
+  .winning-message-content {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  #winning-message-text {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
+  #restart-button {
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  
+  /* Responsive */
+  @media (max-width: 500px) {
+    .container {
+      padding: 15px;
+    }
+  
+    .cell {
+      font-size: 2.5rem;
+    }
+  
+    .score-container {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .score {
+      margin: 0;
+    }
+  }
+  
+  
